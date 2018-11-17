@@ -1,6 +1,6 @@
 package com.yj.webblog.dao;
 
-import com.yj.webblog.pojo.UserInfo;
+import com.yj.webblog.model.domain.UserInfo;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer id);

@@ -1,6 +1,6 @@
 package com.yj.webblog.dao;
 
-import com.yj.webblog.pojo.BlogType;
+import com.yj.webblog.model.domain.BlogType;
 
 public interface BlogTypeMapper {
     int deleteByPrimaryKey(Integer id);

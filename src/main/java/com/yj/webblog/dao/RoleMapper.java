@@ -1,6 +1,6 @@
 package com.yj.webblog.dao;
 
-import com.yj.webblog.pojo.Role;
+import com.yj.webblog.model.domain.Role;
 
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer id);

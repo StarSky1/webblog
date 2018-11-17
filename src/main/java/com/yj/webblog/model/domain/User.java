@@ -1,4 +1,4 @@
-package com.yj.webblog.pojo;
+package com.yj.webblog.model.domain;
 
 public class User {
     private Integer id;

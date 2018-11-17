@@ -1,9 +1,9 @@
-package com.yj.webblog.pojo;
+package com.yj.webblog.model.domain;
 
-public class BlogType {
+public class Role {
     private Integer id;
 
-    private String type;
+    private String name;
 
     private Integer tybz;
 
@@ -15,12 +15,12 @@ public class BlogType {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public Integer getTybz() {

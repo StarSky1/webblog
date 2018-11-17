@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yj.webblog.dao.BlogTypeMapper">
-  <resultMap id="BaseResultMap" type="com.yj.webblog.pojo.BlogType">
+  <resultMap id="BaseResultMap" type="com.yj.webblog.model.domain.BlogType">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="tybz" jdbcType="INTEGER" property="tybz" />
@@ -19,13 +19,13 @@
     delete from blog_type
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yj.webblog.pojo.BlogType">
+  <insert id="insert" parameterType="com.yj.webblog.model.domain.BlogType">
     insert into blog_type (id, type, tybz
       )
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{tybz,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.yj.webblog.pojo.BlogType">
+  <insert id="insertSelective" parameterType="com.yj.webblog.model.domain.BlogType">
     insert into blog_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yj.webblog.pojo.BlogType">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.webblog.model.domain.BlogType">
     update blog_type
     <set>
       <if test="type != null">
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yj.webblog.pojo.BlogType">
+  <update id="updateByPrimaryKey" parameterType="com.yj.webblog.model.domain.BlogType">
     update blog_type
     set type = #{type,jdbcType=VARCHAR},
       tybz = #{tybz,jdbcType=INTEGER}

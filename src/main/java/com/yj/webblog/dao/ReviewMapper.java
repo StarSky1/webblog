@@ -1,6 +1,6 @@
 package com.yj.webblog.dao;
 
-import com.yj.webblog.pojo.Review;
+import com.yj.webblog.model.domain.Review;
 
 public interface ReviewMapper {
     int deleteByPrimaryKey(Integer id);
