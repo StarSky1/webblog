@@ -15,7 +15,7 @@ public class TechnologyBlog {
 
     private Integer favour;
 
-    private String blogType;
+    private Integer blogType;
 
     private Integer readingNum;
 
@@ -71,12 +71,12 @@ public class TechnologyBlog {
         this.favour = favour;
     }
 
-    public String getBlogType() {
+    public Integer getBlogType() {
         return blogType;
     }
 
-    public void setBlogType(String blogType) {
-        this.blogType = blogType == null ? null : blogType.trim();
+    public void setBlogType(Integer blogType) {
+        this.blogType = blogType;
     }
 
     public Integer getReadingNum() {

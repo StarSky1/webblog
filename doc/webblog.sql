@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50548
 File Encoding         : 65001
 
-Date: 2018-11-17 19:53:45
+Date: 2018-11-17 20:40:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for blog_type
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_type`;
+CREATE TABLE `blog_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(10) NOT NULL,
+  `tybz` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of blog_type
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for review
@@ -27,13 +42,17 @@ CREATE TABLE `review` (
   `floor_owner` int(11) NOT NULL,
   `message` varchar(200) NOT NULL,
   `send_time` datetime NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `blog_type` int(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_senderId` (`sender_id`),
   KEY `fk_receiverId` (`receiver_id`),
   KEY `fk_floorOwnerId` (`floor_owner`),
-  CONSTRAINT `fk_senderId` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`),
+  KEY `fk_blogType1` (`blog_type`),
+  CONSTRAINT `fk_blogType1` FOREIGN KEY (`blog_type`) REFERENCES `blog_type` (`id`),
+  CONSTRAINT `fk_floorOwnerId` FOREIGN KEY (`floor_owner`) REFERENCES `user` (`id`),
   CONSTRAINT `fk_receiverId` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `fk_floorOwnerId` FOREIGN KEY (`floor_owner`) REFERENCES `user` (`id`)
+  CONSTRAINT `fk_senderId` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -67,11 +86,13 @@ CREATE TABLE `technology_blog` (
   `publish_time` datetime NOT NULL,
   `tag` varchar(20) NOT NULL,
   `favour` int(11) DEFAULT NULL,
-  `blog_type` varchar(4) NOT NULL,
+  `blog_type` int(4) NOT NULL,
   `reading_num` int(11) DEFAULT NULL,
   `hit_num` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_authorId` (`author_id`),
+  KEY `fk_blogType` (`blog_type`),
+  CONSTRAINT `fk_blogType` FOREIGN KEY (`blog_type`) REFERENCES `blog_type` (`id`),
   CONSTRAINT `fk_authorId` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

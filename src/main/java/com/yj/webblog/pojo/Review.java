@@ -17,6 +17,10 @@ public class Review {
 
     private Date sendTime;
 
+    private Integer blogId;
+
+    private Integer blogType;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +75,21 @@ public class Review {
 
     public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
+    }
+
+    public Integer getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(Integer blogId) {
+        this.blogId = blogId;
+    }
+
+    public Integer getBlogType() {
+        return blogType;
+    }
+
+    public void setBlogType(Integer blogType) {
+        this.blogType = blogType;
     }
 }
