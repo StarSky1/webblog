@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50548
 File Encoding         : 65001
 
-Date: 2018-11-17 20:40:22
+Date: 2018-11-21 23:17:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,29 @@ CREATE TABLE `blog_type` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for reply
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message` varchar(400) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_parentId1` (`parent_id`),
+  KEY `fk_senderId1` (`sender_id`),
+  KEY `fk_receiverId1` (`receiver_id`),
+  CONSTRAINT `fk_parentId1` FOREIGN KEY (`parent_id`) REFERENCES `review` (`id`),
+  CONSTRAINT `fk_senderId1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `fk_receiverId1` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for review
 -- ----------------------------
 DROP TABLE IF EXISTS `review`;
@@ -40,7 +63,7 @@ CREATE TABLE `review` (
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `floor_owner` int(11) NOT NULL,
-  `message` varchar(200) NOT NULL,
+  `message` varchar(400) NOT NULL,
   `send_time` datetime NOT NULL,
   `blog_id` int(11) NOT NULL,
   `blog_type` int(4) NOT NULL,
@@ -49,7 +72,8 @@ CREATE TABLE `review` (
   KEY `fk_receiverId` (`receiver_id`),
   KEY `fk_floorOwnerId` (`floor_owner`),
   KEY `fk_blogType1` (`blog_type`),
-  CONSTRAINT `fk_blogType1` FOREIGN KEY (`blog_type`) REFERENCES `blog_type` (`id`),
+  KEY `fk_blogId` (`blog_id`),
+  CONSTRAINT `fk_blogId` FOREIGN KEY (`blog_id`) REFERENCES `technology_blog` (`id`),
   CONSTRAINT `fk_floorOwnerId` FOREIGN KEY (`floor_owner`) REFERENCES `user` (`id`),
   CONSTRAINT `fk_receiverId` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`),
   CONSTRAINT `fk_senderId` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`)
