@@ -10,7 +10,11 @@ Target Server Type    : MYSQL
 Target Server Version : 50548
 File Encoding         : 65001
 
+<<<<<<< HEAD
 Date: 2018-11-21 23:26:51
+=======
+Date: 2018-11-21 23:17:56
+>>>>>>> e8d4c950ac8134d4cf79ee2dad20ef13b923eeb9
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,8 +50,13 @@ CREATE TABLE `reply` (
   KEY `fk_senderId1` (`sender_id`),
   KEY `fk_receiverId1` (`receiver_id`),
   CONSTRAINT `fk_parentId1` FOREIGN KEY (`parent_id`) REFERENCES `review` (`id`),
+<<<<<<< HEAD
   CONSTRAINT `fk_receiverId1` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`),
   CONSTRAINT `fk_senderId1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`)
+=======
+  CONSTRAINT `fk_senderId1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `fk_receiverId1` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`)
+>>>>>>> e8d4c950ac8134d4cf79ee2dad20ef13b923eeb9
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
