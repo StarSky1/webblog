@@ -31,8 +31,7 @@ public class TestFreemarker {
         System.out.println(file.getPath());
     }
 
-    @Test
-    public void testFreemarker() throws Exception{
+    public void createDocumentByFreemarker(String templateName,Object root,String targetFilePath) throws Exception{
         /* ------------------------------------------------------------------------ */
         /* You should do this ONLY ONCE in the whole application life-cycle:        */
 
@@ -45,6 +44,22 @@ public class TestFreemarker {
         /* ------------------------------------------------------------------------ */
         /* You usually do these for MULTIPLE TIMES in the application life-cycle:   */
 
+
+
+        /* Get the template (uses cache internally) */
+        Template temp = cfg.getTemplate(templateName);
+
+        /* Merge data-model with template */
+        FileOutputStream fos=new FileOutputStream(new File(targetFilePath));
+        Writer out = new OutputStreamWriter(fos);
+        temp.process(root, out);
+        out.close();
+        // Note: Depending on what `out` is, you may need to call `out.close()`.
+        // This is usually the case for file output, but not for servlet output.
+    }
+
+    @Test
+    public void testFreemarker() throws Exception{
         /* Create a data-model */
         Map root = new HashMap();
         root.put("user", "Big Joe");
@@ -52,16 +67,18 @@ public class TestFreemarker {
         root.put("latestProduct", latest);
         latest.put("url", "products/greenmouse.html");
         latest.put("name", "green mouse");
+        createDocumentByFreemarker("test.ftl",root,"./doc/testFreemarker.html");
+    }
 
-        /* Get the template (uses cache internally) */
-        Template temp = cfg.getTemplate("test.ftl");
-
-        /* Merge data-model with template */
-        FileOutputStream fos=new FileOutputStream(new File("./doc/testFreemarker.html"));
-        Writer out = new OutputStreamWriter(fos);
-        temp.process(root, out);
-        out.close();
-        // Note: Depending on what `out` is, you may need to call `out.close()`.
-        // This is usually the case for file output, but not for servlet output.
+    @Test
+    public void testFreemarker1() throws Exception{
+        /* Create a data-model */
+        Map root = new HashMap();
+        root.put("user", "Big Joe");
+        Map latest = new HashMap();
+        root.put("latestProduct", latest);
+        latest.put("url", "products/greenmouse.html");
+        latest.put("name", "green mouse");
+        createDocumentByFreemarker("test1.ftl",root,"./doc/testFreemarker.html");
     }
 }
